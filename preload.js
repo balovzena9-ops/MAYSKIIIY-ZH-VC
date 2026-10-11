@@ -1,6 +1,6 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
-/* Экспорт для самого HTML-приложения (на всякий случай) */
+/* Экспорт для самого HTML-приложения */
 contextBridge.exposeInMainWorld('electronAPI', {
   minimize:         () => ipcRenderer.send('window-minimize'),
   maximize:         () => ipcRenderer.send('window-maximize'),
@@ -25,8 +25,8 @@ function injectTitlebar() {
       top: 0; left: 0; right: 0;
       height: ${TB_HEIGHT}px;
       background: rgba(10,10,10,0.94);
-      backdrop-filter: blur(22px) saturate(180%);
-      -webkit-backdrop-filter: blur(22px) saturate(180%);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(255,255,255,.07);
       display: flex;
       align-items: stretch;
