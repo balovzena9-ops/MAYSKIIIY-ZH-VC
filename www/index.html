@@ -47,13 +47,13 @@
   .screen.active{opacity:1;visibility:visible;}
 
   .fx{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:60;}
-  .fx-particle{position:absolute;will-change:transform,opacity;pointer-events:none;line-height:1;}
+  .fx-particle{position:absolute;pointer-events:none;line-height:1;}
   .blood-drop{
     position:absolute;top:0;width:8px;
     background:linear-gradient(180deg,#7f1d1d 0%,#b91c1c 45%,#dc2626 80%,#ef4444 100%);
     border-radius:0 0 50% 50% / 0 0 70% 70%;
     box-shadow:0 0 8px rgba(185,28,28,.85),0 0 20px rgba(120,10,10,.6),inset 0 -4px 6px rgba(255,100,100,.35);
-    will-change:height,opacity;pointer-events:none;
+    pointer-events:none;
     filter:drop-shadow(0 6px 4px rgba(80,5,5,.55));
   }
   .blood-drop::after{
@@ -222,7 +222,7 @@
     background:conic-gradient(from 0deg,
       rgba(255,58,138,.20) 0%, rgba(168,85,247,.20) 25%,
       rgba(78,168,255,.20) 50%, rgba(168,85,247,.20) 75%, rgba(255,58,138,.20) 100%);
-    filter:blur(120px);animation:bgSpin 22s linear infinite;pointer-events:none;
+    filter:blur(60px);animation:bgSpin 22s linear infinite;pointer-events:none;
   }
   @keyframes bgSpin{to{transform:rotate(360deg);}}
 
@@ -353,7 +353,7 @@
     background:conic-gradient(from 0deg,
       #ff3a8a 0%, #a855f7 18%, #4ea8ff 36%,
       #a855f7 54%, #ff6fb3 72%, #ff3a8a 100%);
-    filter:blur(100px);opacity:.55;
+    filter:blur(50px);opacity:.55;
     animation:loadSpin 14s linear infinite;
     pointer-events:none;z-index:0;
   }
@@ -363,7 +363,7 @@
     background:radial-gradient(circle at 30% 30%, rgba(255,58,138,.7), transparent 45%),
                radial-gradient(circle at 70% 70%, rgba(78,168,255,.7), transparent 45%),
                radial-gradient(circle at 50% 50%, rgba(168,85,247,.5), transparent 55%);
-    filter:blur(80px);opacity:.55;
+    filter:blur(40px);opacity:.55;
     animation:loadSpinReverse 20s linear infinite;
     pointer-events:none;z-index:0;
   }
@@ -401,7 +401,7 @@
   .main-bg{
     position:fixed;inset:-40%;pointer-events:none;z-index:0;
     background:conic-gradient(from 0deg, #ff3a8a 0%, #a855f7 25%, #4ea8ff 50%, #a855f7 75%, #ff3a8a 100%);
-    filter:blur(120px);opacity:0;animation:bgSpin 22s linear infinite;
+    filter:blur(60px);opacity:0;animation:bgSpin 22s linear infinite;
     transition:opacity 1.4s ease;
   }
   .screen-main.live-active .main-bg{opacity:calc(.36 * var(--glow-mult));}
@@ -480,7 +480,7 @@
   @keyframes liveBlob{0%{transform:rotate(0deg) scale(1);}100%{transform:rotate(360deg) scale(1.1);}}
   .live-icon{
     width:58px;height:58px;border-radius:50%;flex-shrink:0;
-    background:rgba(255,255,255,.2);backdrop-filter:blur(12px);
+    background:rgba(255,255,255,.2);backdrop-filter:blur(8px);
     display:grid;place-items:center;
     box-shadow:inset 0 1px 0 rgba(255,255,255,.5);position:relative;z-index:1;
   }
@@ -490,7 +490,7 @@
   .live-sub{font-size:12.5px;font-weight:600;opacity:.9;margin-top:3px;}
   .live-arrow{
     width:34px;height:34px;border-radius:50%;
-    background:rgba(255,255,255,.2);backdrop-filter:blur(8px);
+    background:rgba(255,255,255,.2);backdrop-filter:blur(6px);
     display:grid;place-items:center;flex-shrink:0;position:relative;z-index:1;
   }
   .live-arrow svg{width:16px;height:16px;}
@@ -501,7 +501,7 @@
     display:flex;flex-direction:column;gap:14px;
     padding:18px 20px 20px;border-radius:26px;
     background:linear-gradient(135deg, rgba(255,58,138,.18), rgba(168,85,247,.16) 50%, rgba(78,168,255,.18));
-    backdrop-filter:blur(22px) saturate(180%);
+    backdrop-filter:blur(12px) saturate(160%);
     box-shadow:
       0 0 0 1px rgba(255,255,255,.12),
       0 0 50px rgba(255,58,138,calc(.35 * var(--island-glow))),
@@ -514,7 +514,7 @@
   .screen-main.live-active .live-island::before{
     content:'';position:absolute;inset:-50%;
     background:conic-gradient(from 0deg, rgba(255,58,138,.5), rgba(168,85,247,.5), rgba(78,168,255,.5), rgba(168,85,247,.5), rgba(255,58,138,.5));
-    filter:blur(60px);opacity:calc(.5 * var(--glow-mult));animation:bgSpin 14s linear infinite;
+    filter:blur(30px);opacity:calc(.5 * var(--glow-mult));animation:bgSpin 14s linear infinite;
     pointer-events:none;z-index:0;
   }
   .screen-main.live-active .live-island > *{position:relative;z-index:1;}
@@ -575,7 +575,7 @@
     background:
       linear-gradient(135deg, rgba(255,58,138,.14), rgba(168,85,247,.12) 50%, rgba(78,168,255,.14)),
       var(--ui-bg-soft);
-    backdrop-filter:blur(22px) saturate(160%);
+    backdrop-filter:blur(12px) saturate(160%);
     box-shadow:
       0 0 0 1px var(--ui-border),
       0 12px 40px rgba(0,0,0,.35),
@@ -769,7 +769,7 @@
     padding:12px 12px 14px;border-radius:26px;
     display:flex;flex-direction:column;gap:8px;
     background:rgba(15,12,8,.58);
-    backdrop-filter:blur(24px) saturate(200%);
+    backdrop-filter:blur(14px) saturate(180%);
     box-shadow:
       inset 0 0 0 1px rgba(var(--c-rgb),.14),
       inset 0 1px 0 rgba(255,255,255,.14),
@@ -935,7 +935,7 @@
   .playlist{
     flex:1;min-width:0;overflow-y:auto;overflow-x:hidden;
     padding:8px;border-radius:22px;
-    background:rgba(15,12,8,.42);backdrop-filter:blur(16px);
+    background:rgba(15,12,8,.42);backdrop-filter:blur(10px);
     box-shadow:inset 0 0 0 1px var(--ui-border),0 8px 28px rgba(0,0,0,.32);
     display:flex;flex-direction:column;gap:4px;scroll-behavior:smooth;
     transition:box-shadow .5s ease;
@@ -983,7 +983,7 @@
 
   .theme-modal{
     position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5);
-    backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;
+    backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;
     padding:24px;opacity:0;visibility:hidden;
     transition:opacity .3s ease, visibility .3s ease;
   }
@@ -1019,7 +1019,7 @@
   .info-modal{
     position:fixed;inset:0;z-index:210;
     background:rgba(0,0,0,.65);
-    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
     display:flex;align-items:flex-start;justify-content:center;
     padding:20px;
     overflow-y:auto;-webkit-overflow-scrolling:touch;
@@ -1734,8 +1734,6 @@
     { id:'victoria', name:'VI€toriA',                short:'VI€toriA',  accent:'#f59e0b', accent2:'#78350f', songs: sortHymnsFirst(SONGS_VICTORIA) }
   ];
 
-  // "Новинки группы" — не плейлист, а секция на главном меню.
-  // Скрывается через 10 дней после первого запуска.
   const NEW_RELEASES_KEY = 'mayskiy_new_releases_shown_at';
   const NEW_RELEASES_TTL = 10 * 24 * 60 * 60 * 1000;
 
@@ -1895,17 +1893,31 @@
   /* ============ AUDIO ============ */
   const audio = $('audio');
 
-  /* ============ BLOB CACHE ============ */
+  /* ============ BLOB CACHE (оптимизировано + дисковый кэш Chromium) ============
+     Файлы теперь хранятся в дисковом кэше Chromium (partition persist),
+     а в RAM держим максимум 3 blob-URL для мгновенного переключения.
+  */
   const blobCache = new Map();
   const pendingLoads = new Map();
+  const MAX_CACHE_SIZE = 3;
+
   function loadBlob(url){
     if (blobCache.has(url)) return Promise.resolve(blobCache.get(url));
     if (pendingLoads.has(url)) return pendingLoads.get(url);
-    const p = fetch(url, {mode:'cors'})
+    const p = fetch(url, { mode:'cors', cache:'force-cache' })
       .then(res => { if(!res.ok) throw new Error('HTTP '+res.status); return res.blob(); })
       .then(blob => {
         const u = URL.createObjectURL(blob);
-        blobCache.set(url,u); pendingLoads.delete(url); return u;
+        blobCache.set(url, u);
+        pendingLoads.delete(url);
+        if (blobCache.size > MAX_CACHE_SIZE){
+          const firstKey = blobCache.keys().next().value;
+          if (firstKey !== url){
+            try { URL.revokeObjectURL(blobCache.get(firstKey)); } catch(e){}
+            blobCache.delete(firstKey);
+          }
+        }
+        return u;
       })
       .catch(err => {
         console.warn('blob fetch failed:', err, url);
@@ -1933,7 +1945,11 @@
   document.addEventListener('touchstart', unlockAllAudio, { once:true, passive:true });
   document.addEventListener('keydown', unlockAllAudio, { once:true });
 
-  /* ============ LOADING ============ */
+  /* ============ LOADING (прогрев треков на диск Chromium) ============
+     При первом запуске — все ~100 треков скачиваются в дисковый кэш Chromium.
+     При следующих запусках — читаются с диска, никаких повторных скачиваний.
+     RAM остаётся свободной: в blobCache хранится максимум 3 blob'а.
+  */
   const loadPct = $('loadPct');
   const loadFill = $('loadFill');
   const loadNow = $('loadNow');
@@ -1947,6 +1963,7 @@
     const total = pool.length;
     const startTime = performance.now();
 
+    // Короткий превью-звук на экране загрузки
     const first = pool[(Math.random() * total) | 0];
     loadNow.textContent = '♪ ' + first.name;
     try{
@@ -1965,39 +1982,19 @@
       if (p && p.catch) p.catch(()=>{});
     }catch(e){}
 
-    loadNow.textContent = 'Загрузка треков...';
+    loadNow.textContent = 'Прогреваем треки...';
     let done = 0;
     let cursor = 0;
-    const CONCURRENCY = 4;
-
-    async function readDurationFromBlobUrl(blobUrl){
-      return new Promise((resolve) => {
-        const probe = new Audio();
-        probe.preload = 'metadata';
-        let finished = false;
-        const finish = (dur) => {
-          if (finished) return; finished = true;
-          try { probe.removeAttribute('src'); probe.load(); } catch(_){}
-          resolve(dur);
-        };
-        probe.addEventListener('loadedmetadata', () => {
-          finish(isFinite(probe.duration) && probe.duration > 0 ? probe.duration : 0);
-        }, {once:true});
-        probe.addEventListener('error', () => finish(0), {once:true});
-        setTimeout(() => finish(0), 8000);
-        probe.src = blobUrl;
-      });
-    }
+    const CONCURRENCY = 6;
 
     async function worker(){
       while (cursor < total){
         const i = cursor++;
         const song = pool[i];
         try {
-          const src = await loadBlob(song.url);
-          if (src && !song._duration){
-            const dur = await readDurationFromBlobUrl(src);
-            if (dur > 0) song._duration = dur;
+          const res = await fetch(song.url, { mode:'cors', cache:'force-cache' });
+          if (res.ok) {
+            await res.arrayBuffer();
           }
         } catch(e){}
         done++;
@@ -2010,8 +2007,8 @@
     await Promise.all(new Array(CONCURRENCY).fill(0).map(worker));
 
     const elapsed = performance.now() - startTime;
-    if (elapsed < 6000){
-      await new Promise(r => setTimeout(r, 6000 - elapsed));
+    if (elapsed < 4000){
+      await new Promise(r => setTimeout(r, 4000 - elapsed));
     }
 
     try{ snippetAudio.pause(); snippetAudio.src = ''; }catch(e){}
@@ -2046,14 +2043,13 @@
       playlistsEl.appendChild(btn);
     });
 
-    // Показать/скрыть секцию "Новинки группы" (через 10 дней — скрывается)
     const newRel = $('newReleasesSection');
     if (newRel){
       newRel.style.display = shouldShowNewReleases() ? '' : 'none';
     }
   }
 
-  // Клик по карточке "Слепая зона камер" — открывает Колаб на этой песне
+  // Клик по карточке "Слепая зона камер"
   document.addEventListener('DOMContentLoaded', () => {
     const btn = $('newReleaseTrack');
     if (!btn) return;
@@ -2062,7 +2058,6 @@
       if (!pl) return;
       let idx = pl.songs.findIndex(s => s.name === BLIND_SONG.name);
       if (idx < 0) idx = 0;
-      // Открываем через общий механизм, но с установкой индекса
       if (mode === 'mini'){
         liveLastPosition = audio.currentTime || 0;
         liveIndex = currentIndex;
@@ -2368,36 +2363,36 @@
   function startFx(theme){
     clearFx(); if (!theme) return; fxTheme = theme;
     if (theme === 'poop'){
-      for (let i=0;i<6;i++) setTimeout(()=>spawnFalling('💩', 24+Math.random()*18, 1), i*170);
-      fxInterval = setInterval(()=>spawnFalling('💩', 24+Math.random()*18, 1), 560);
+      for (let i=0;i<4;i++) setTimeout(()=>spawnFalling('💩', 24+Math.random()*18, 1), i*200);
+      fxInterval = setInterval(()=>spawnFalling('💩', 24+Math.random()*18, 1), 700);
     } else if (theme === 'party'){
       const balloons = ['🎈','🎈','🎉','🎊','🎁'];
       const confetti = ['🎉','🎊','✨','⭐','🌟','💫','🎁','🎂'];
-      for (let i=0;i<5;i++) setTimeout(()=>spawnRising(balloons[(Math.random()*balloons.length)|0], 30+Math.random()*16), i*180);
-      for (let i=0;i<10;i++) setTimeout(()=>spawnFalling(confetti[(Math.random()*confetti.length)|0], 16+Math.random()*12, .9), i*90);
+      for (let i=0;i<4;i++) setTimeout(()=>spawnRising(balloons[(Math.random()*balloons.length)|0], 30+Math.random()*16), i*200);
+      for (let i=0;i<8;i++) setTimeout(()=>spawnFalling(confetti[(Math.random()*confetti.length)|0], 16+Math.random()*12, .9), i*110);
       fxInterval = setInterval(()=>{
         spawnRising(balloons[(Math.random()*balloons.length)|0], 30+Math.random()*16);
-        for (let i=0;i<3;i++) setTimeout(()=>spawnFalling(confetti[(Math.random()*confetti.length)|0], 16+Math.random()*12, .9), i*100);
-      }, 800);
+        for (let i=0;i<2;i++) setTimeout(()=>spawnFalling(confetti[(Math.random()*confetti.length)|0], 16+Math.random()*12, .9), i*120);
+      }, 950);
     } else if (theme === 'blood'){
-      for (let i=0;i<4;i++){
-        const id = setTimeout(()=>spawnBloodDrop(), i*320+Math.random()*200);
+      for (let i=0;i<3;i++){
+        const id = setTimeout(()=>spawnBloodDrop(), i*380+Math.random()*200);
         bloodTimeouts.push(id);
       }
       fxInterval = setInterval(()=>{
         const id = setTimeout(()=>spawnBloodDrop(), Math.random()*180);
         bloodTimeouts.push(id);
-      }, 900 + Math.random()*400);
+      }, 1100 + Math.random()*500);
     } else if (theme === 'blind'){
       document.body.classList.add('blind-mode');
-      for (let i=0;i<6;i++){
-        const id = setTimeout(()=>spawnBloodDrop(), i*260+Math.random()*180);
+      for (let i=0;i<4;i++){
+        const id = setTimeout(()=>spawnBloodDrop(), i*300+Math.random()*180);
         bloodTimeouts.push(id);
       }
       fxInterval = setInterval(()=>{
         const id = setTimeout(()=>spawnBloodDrop(), Math.random()*160);
         bloodTimeouts.push(id);
-      }, 700 + Math.random()*400);
+      }, 900 + Math.random()*400);
     }
   }
 
@@ -2483,7 +2478,7 @@
   }
 
   /* ============ WAVE ============ */
-  const W = 200, H = 30, MID = H/2, POINTS = 70;
+  const W = 200, H = 30, MID = H/2, POINTS = 50;
   let waveT = 0, waveRaf = null, amp = 0, targetAmp = 0;
   function buildWave(t){
     let d='', d1='', d2='';
@@ -2656,28 +2651,26 @@
     function probeNext(){
       if (probeIdx >= needProbe.length) return;
       const { s, i } = needProbe[probeIdx++];
-      loadBlob(s.url).then(src => {
-        const probe = new Audio();
-        probe.preload = 'metadata';
-        let done = false;
-        const finish = () => {
-          if (done) return; done = true;
-          probe.removeAttribute('src');
-          try{ probe.load(); }catch(_){}
-          setTimeout(probeNext, 20);
-        };
-        probe.addEventListener('loadedmetadata', () => {
-          const el = playlistEl.querySelector('.song[data-index="' + i + '"] .songDur');
-          if (el && isFinite(probe.duration) && probe.duration > 0){
-            el.textContent = fmtTime(probe.duration);
-            s._duration = probe.duration;
-          }
-          finish();
-        });
-        probe.addEventListener('error', finish);
-        probe.src = src;
-        setTimeout(finish, 6000);
+      const probe = new Audio();
+      probe.preload = 'metadata';
+      let done = false;
+      const finish = () => {
+        if (done) return; done = true;
+        probe.removeAttribute('src');
+        try{ probe.load(); }catch(_){}
+        setTimeout(probeNext, 20);
+      };
+      probe.addEventListener('loadedmetadata', () => {
+        const el = playlistEl.querySelector('.song[data-index="' + i + '"] .songDur');
+        if (el && isFinite(probe.duration) && probe.duration > 0){
+          el.textContent = fmtTime(probe.duration);
+          s._duration = probe.duration;
+        }
+        finish();
       });
+      probe.addEventListener('error', finish);
+      probe.src = s.url;
+      setTimeout(finish, 6000);
     }
     probeNext();
   }
