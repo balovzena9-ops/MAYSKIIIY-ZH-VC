@@ -29,8 +29,7 @@
         { "target": "nsis", "arch": ["x64"] },
         { "target": "portable", "arch": ["x64"] }
       ],
-      "icon": "www/icon.ico",
-      "artifactName": "MAYSKIIIY-ZH-VC-Setup-${version}.${ext}"
+      "icon": "www/icon.ico"
     },
     "nsis": {
       "oneClick": false,
@@ -40,7 +39,11 @@
       "createStartMenuShortcut": true,
       "shortcutName": "MAYSKIIIY ZH&VC",
       "installerIcon": "www/icon.ico",
-      "uninstallerIcon": "www/icon.ico"
+      "uninstallerIcon": "www/icon.ico",
+      "artifactName": "MAYSKIIIY-ZH-VC-Setup-${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "MAYSKIIIY-ZH-VC-Portable-${version}.${ext}"
     }
   }
 }
