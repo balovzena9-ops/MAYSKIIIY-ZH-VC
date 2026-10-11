@@ -1,21 +1,20 @@
 const { app, BrowserWindow, ipcMain, Menu, shell } = require('electron');
 const path = require('path');
 
-/* ============ GPU / ПРОИЗВОДИТЕЛЬНОСТЬ ============ */
-app.commandLine.appendSwitch('ignore-gpu-blocklist');
+/* ============ GPU / ПРОИЗВОДИТЕЛЬНОСТЬ (мягкие флаги) ============ */
+// Не форсируем GPU — Chromium сам решит, использовать железо или откатиться
+// на софтверный рендер. Это спасает слабые ПК от крашей GPU-процесса.
 app.commandLine.appendSwitch('enable-gpu-rasterization');
-app.commandLine.appendSwitch('enable-zero-copy');
-app.commandLine.appendSwitch('enable-accelerated-2d-canvas');
-app.commandLine.appendSwitch('enable-native-gpu-memory-buffers');
-app.commandLine.appendSwitch('enable-oop-rasterization');
 app.commandLine.appendSwitch('enable-accelerated-video-decode');
-app.commandLine.appendSwitch('enable-features',
-  'CanvasOopRasterization,VaapiVideoDecoder,UseSkiaRenderer,PartitionAlloc'
-);
-app.commandLine.appendSwitch('disable-features', 'CalculateNativeWinOcclusion');
+app.commandLine.appendSwitch('enable-features', 'VaapiVideoDecoder');
+
+// Отключаем троттлинг фонового рендера — иначе аудио лагает в свёрнутом окне
 app.commandLine.appendSwitch('disable-renderer-backgrounding');
 app.commandLine.appendSwitch('disable-background-timer-throttling');
 app.commandLine.appendSwitch('disable-backgrounding-occluded-windows');
+
+// Автоматический откат на software-рендер при краше GPU
+app.commandLine.appendSwitch('disable-gpu-process-crash-limit');
 
 // Убираем системное меню
 Menu.setApplicationMenu(null);
