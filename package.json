@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder --win --x64"
+    "build": "electron-builder --win --x64 --publish never"
   },
   "devDependencies": {
     "electron": "^31.3.0",
@@ -44,6 +44,7 @@
     },
     "portable": {
       "artifactName": "MAYSKIIIY-ZH-VC-Portable-${version}.${ext}"
-    }
+    },
+    "publish": null
   }
 }
