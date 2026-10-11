@@ -1,22 +1,16 @@
-const { app, BrowserWindow, ipcMain, Menu, shell } = require('electron');
+const { app, BrowserWindow, ipcMain, Menu, shell, session } = require('electron');
 const path = require('path');
 
 /* ============ GPU / ПРОИЗВОДИТЕЛЬНОСТЬ (мягкие флаги) ============ */
-// Не форсируем GPU — Chromium сам решит, использовать железо или откатиться
-// на софтверный рендер. Это спасает слабые ПК от крашей GPU-процесса.
 app.commandLine.appendSwitch('enable-gpu-rasterization');
 app.commandLine.appendSwitch('enable-accelerated-video-decode');
 app.commandLine.appendSwitch('enable-features', 'VaapiVideoDecoder');
 
-// Отключаем троттлинг фонового рендера — иначе аудио лагает в свёрнутом окне
 app.commandLine.appendSwitch('disable-renderer-backgrounding');
 app.commandLine.appendSwitch('disable-background-timer-throttling');
 app.commandLine.appendSwitch('disable-backgrounding-occluded-windows');
-
-// Автоматический откат на software-рендер при краше GPU
 app.commandLine.appendSwitch('disable-gpu-process-crash-limit');
 
-// Убираем системное меню
 Menu.setApplicationMenu(null);
 
 let mainWindow = null;
@@ -66,11 +60,11 @@ function createMainWindow() {
       backgroundThrottling: false,
       webgl: true,
       experimentalFeatures: true,
-      spellcheck: false
+      spellcheck: false,
+      partition: 'persist:mayskiiiy-cache'   // ← постоянный кэш на диске
     }
   });
 
-  // Не даём HTML перезаписывать заголовок окна
   mainWindow.on('page-title-updated', (e) => e.preventDefault());
 
   mainWindow.loadFile(path.join(__dirname, 'www', 'index.html'));
@@ -95,8 +89,22 @@ function createMainWindow() {
   mainWindow.on('closed', () => { mainWindow = null; });
 }
 
-/* ============ ЖИЗНЕННЫЙ ЦИКЛ ============ */
+/* ============ ЖИЗНЕННЫЙ ЦИКЛ + ДИСКОВЫЙ КЭШ ============ */
 app.whenReady().then(() => {
+  // Форсируем долгий HTTP-кэш для аудио-файлов.
+  // GitHub отдаёт mp3 с Cache-Control: max-age=300 (5 минут) — этого мало.
+  // Перезаписываем на год → Chromium хранит mp3 на диске между запусками.
+  session.fromPartition('persist:mayskiiiy-cache').webRequest.onHeadersReceived((details, callback) => {
+    if (details.url && /\.(mp3|ogg|wav|m4a)($|\?)/i.test(details.url)) {
+      const headers = Object.assign({}, details.responseHeaders);
+      headers['Cache-Control'] = ['public, max-age=31536000, immutable'];
+      headers['Access-Control-Allow-Origin'] = ['*'];
+      callback({ responseHeaders: headers });
+    } else {
+      callback({});
+    }
+  });
+
   createSplash();
   setTimeout(createMainWindow, 100);
 
