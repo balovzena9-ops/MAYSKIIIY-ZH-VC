@@ -1249,6 +1249,7 @@
 
   const SONGS_KOLAB = [
     ECOSYSTEM_SONG, BLIND_SONG,
+    { name:'Вперёд MYRUNPLAY', theme:'red', url: BASE+'%D0%B2%D0%BF%D0%B5%D1%80%D0%B5%D0%B4%20MYRUNPLAY___%20-%20usesuno.com.mp3' },
     { name:'MAYSKIY HERE...', theme:'red', url: BASE+'MAYSKIY%20HERE...%20(1).mp3' },
     { name:'Myrunplay', theme:'red', url: BASE+'Myrunplay%20(1).mp3' },
     { name:'Mayskiy Europa', theme:'red', url: BASE+'mayskiy_europa.mp3' },
@@ -1330,11 +1331,12 @@
   ];
 
   const NEW_RELEASES_KEY = 'mayskiy_new_releases_shown_at_v5';
-  const NEW_RELEASES_TTL = 10 * 24 * 60 * 60 * 1000;
+  const NEW_RELEASES_TTL = 10 * 24 * 60 * 60 * 1000; /* 10 дней */
   const NEW_RELEASES = [
     { name: 'Слепая зона камер', plId: 'kolab', style: 'dark' },
     { name: 'Но-но-но-новый год', plId: 'mayskiy', style: 'winter' },
-    { name: 'Ecosystem of Dreams', plId: 'victoria', style: 'dream' }
+    { name: 'Ecosystem of Dreams', plId: 'victoria', style: 'dream' },
+    { name: 'Вперёд MYRUNPLAY', plId: 'kolab', style: 'dark' }
   ];
 
   function getNewReleasesStartTimes(){
